@@ -48,7 +48,15 @@ int main()
         return -4;
     }
 
+    // 
 	glClearColor(1, 0, 1, 1);
+
+
+    // create vao (necessary, we'll get to why later)
+    GLuint vao;
+    glGenVertexArrays(1, &vao);
+
+
     // main loop
     while (!glfwWindowShouldClose(window)) {
 
@@ -58,6 +66,11 @@ int main()
 
         // draw
 		glClear(GL_COLOR_BUFFER_BIT);
+
+        glBindVertexArray(vao);
+        glUseProgram(shader_program);
+        glDrawArrays(GL_TRIANGLES, 0, 3);
+
         glfwSwapBuffers(window);
     }
 
