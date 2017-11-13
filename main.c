@@ -78,6 +78,8 @@ int main()
 
         glBindVertexArray(vao);
         glUseProgram(shader_program);
+
+        glUniform1f(glGetUniformLocation(shader_program, "time"), glfwGetTime());
         glDrawArrays(GL_TRIANGLES, 0, 3);
 
         glfwSwapBuffers(window);
