@@ -65,8 +65,12 @@ int main()
         if (glfwGetKey(window, GLFW_KEY_ESCAPE)) glfwSetWindowShouldClose(window, GLFW_TRUE);
 
         if (glfwGetKey(window, GLFW_KEY_F5)) {
+            GLuint old_program = shader_program;
             GLuint new_program = load_shaders("vertex_shader.glsl", "fragment_shader.glsl");
-            if (new_program) shader_program = new_program;
+            if (new_program) {
+                shader_program = new_program;
+                glDeleteProgram(old_program);
+            }
         }
 
         // draw
